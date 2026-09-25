@@ -1,0 +1,75 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // =========================
+    // CONTROL DE PAGOS - ORIGINAL
+    // =========================
+    match /users/{userId}/profile/avatar {
+      allow read: if true;
+
+      allow create, update: if request.auth != null
+                            && request.auth.uid == userId
+                            && request.resource.size < 5 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+
+      allow delete: if request.auth != null
+                    && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/{allPaths=**} {
+      allow read: if request.auth != null
+                 && request.auth.uid == userId;
+
+      allow create, update: if request.auth != null
+                            && request.auth.uid == userId
+                            && request.resource.size < 5 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+
+      allow delete: if request.auth != null
+                    && request.auth.uid == userId;
+    }
+
+    // =========================
+    // PIÑATAS CARLOS - NUEVO
+    // =========================
+    // Lectura pública; escritura exclusiva del administrador.
+    match /pinatas/products/{pinataId}/{fileName} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+                            && request.resource.size < 8 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    match /pinatas/logo/{fileName} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+                            && request.resource.size < 8 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    match /pinatas/backgrounds/{fileName} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+                            && request.resource.size < 8 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    match /pinatas/gallery/{fileName} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+                            && request.resource.size < 8 * 1024 * 1024
+                            && request.resource.contentType.matches('image/.*');
+      allow delete: if isAdmin();
+    }
+
+    function isAdmin() {
+      return request.auth != null
+        && request.auth.uid == 'ADMIN_UID_AQUI';
+    }
+  }
+}

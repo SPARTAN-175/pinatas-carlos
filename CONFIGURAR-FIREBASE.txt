@@ -1,0 +1,22 @@
+ANTES DE PUBLICAR
+
+1. Abre data/firebase-config.js
+2. Pega la configuración WEB del mismo proyecto Firebase que ya usa Control de Pagos.
+3. Pega el UID de la cuenta administradora.
+4. En Firebase Authentication habilita:
+   - Email/Password
+   - Anonymous
+5. En Firebase Console, publica firestore.rules y storage.rules.
+
+MUY IMPORTANTE:
+- Las reglas de users/* son las mismas que ya funcionaban para Control de Pagos.
+- Piñatas usa rutas nuevas: pinatas/*, pinatasOrders/* y siteSettings/*.
+- No borres ni cambies users/*.
+
+Después entra como administrador:
+Administrar > Herramientas
+- Importar catálogo inicial
+- Guardar fondo
+- Guardar logo
+
+El catálogo local de respaldo permanece incluido hasta que la conexión Firebase esté configurada.

@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#ffe600">
+<meta name="description" content="Piñatas Carlos — una piñata para ti.">
+<title>Piñatas Carlos | Catálogo</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="topline">Envíos y pedidos en Ostuacán · Atención personalizada por WhatsApp</div>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" href="#"><img class="logo" src="assets/brand/logo.png" alt="Piñatas Carlos"></a>
+    <div class="searchbar"><span>⌕</span><input id="search" autocomplete="off" placeholder="Buscar piñatas, personajes o temáticas..."><button aria-label="Buscar">Buscar</button></div>
+    <div class="header-actions">
+      <button class="head-link" onclick="App.shareShop()">↗ <span>Compartir</span></button>
+      <button class="head-link" onclick="App.openAdmin()">⚙ <span>Administrar</span></button>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="#catalogo">Categorías</a>
+    <a href="#destacadas">Destacadas</a>
+    <a href="#como-funciona">Cómo comprar</a>
+    <a href="#contacto">Contacto</a>
+    <button class="location">📍 Ostuacán, Chiapas</button>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="hero-card">
+    <div class="hero-copy">
+      <div class="eyebrow">🪅 PIÑATAS CARLOS</div>
+      <h1>Una piñata para cada celebración</h1>
+      <p>Diseños hechos a mano y personalizados. Encuentra tu favorita, guárdala, compártela o pregunta por ella directamente.</p>
+      <div class="hero-buttons">
+        <a class="btn btn-dark" href="#catalogo">Ver catálogo</a>
+        <button class="btn btn-light" onclick="App.openAdmin()">＋ Agregar piñata</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-circle">🪅</div>
+      <div class="hero-tag">Diseños personalizados</div>
+    </div>
+  </div>
+</section>
+
+<section class="container" id="catalogo">
+  <div class="section-head">
+    <div><h2>Explora nuestras piñatas</h2><p id="resultCount">Cargando...</p></div>
+    <select id="sort" class="filter"><option value="featured">Recomendadas</option><option value="rating">Mejor valoradas</option><option value="priceLow">Precio menor</option><option value="priceHigh">Precio mayor</option></select>
+  </div>
+  <div class="category-row" id="categories"></div>
+  <div class="market-grid" id="products"></div>
+</section>
+
+<section class="trust">
+  <div class="trust-grid">
+    <div><b>🎨 Personalizadas</b><span>Adaptamos colores, nombres y edades.</span></div>
+    <div><b>🪅 Hechas a mano</b><span>Trabajo artesanal local.</span></div>
+    <div><b>💬 Atención directa</b><span>Pregunta por disponibilidad.</span></div>
+    <div><b>📍 Ostuacán</b><span>Chiapas, México.</span></div>
+  </div>
+</section>
+
+<section class="container" id="destacadas">
+  <div class="section-head"><div><h2>Diseños destacados</h2><p>Algunas de nuestras creaciones.</p></div></div>
+  <div class="market-grid" id="featuredProducts"></div>
+</section>
+
+<section class="container steps" id="como-funciona">
+  <div class="section-head"><div><h2>Comprar es fácil</h2><p>Elige, pregunta y personaliza.</p></div></div>
+  <div class="step-grid">
+    <div><strong>1</strong><b>Encuentra</b><span>Explora el catálogo.</span></div>
+    <div><strong>2</strong><b>Pregunta</b><span>Consulta precio y fecha.</span></div>
+    <div><strong>3</strong><b>Personaliza</b><span>Hazla a tu gusto.</span></div>
+    <div><strong>4</strong><b>Listo</b><span>Coordinamos tu pedido.</span></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer" id="contacto">
+  <div class="footer-inner">
+    <div><img class="footer-logo" src="assets/brand/logo.png" alt=""><p>Una piñata para ti.</p></div>
+    <div><h4>Piñatas Carlos</h4><p>📍 <span id="footerLocation">Ostuacán, Chiapas</span></p><p>📱 Atención por WhatsApp</p></div>
+    <div><h4>Enlaces</h4><p><a href="#catalogo">Catálogo</a></p><p><a href="#destacadas">Destacadas</a></p><p><a href="#" onclick="App.openAdmin();return false">Administrar</a></p></div>
+  </div>
+  <div class="footer-bottom">© <span id="year"></span> Piñatas Carlos</div>
+</footer>
+
+<div class="modal" id="productModal"><div class="modal-box"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+
+<aside class="drawer" id="adminDrawer">
+  <div class="drawer-head"><div><small>PIÑATAS CARLOS</small><h2>Panel de administración</h2></div><button class="close" id="adminClose">×</button></div>
+  <div class="drawer-body">
+    <div class="admin-tabs">
+      <button id="adminProductsTab" class="admin-tab" data-admin-tab="products">Mis piñatas</button>
+      <button id="adminNewTab" class="admin-tab" data-admin-tab="new">＋ Nueva</button>
+      <button id="adminToolsTab" class="admin-tab" data-admin-tab="tools">Herramientas</button>
+    </div>
+    <div id="adminContent"></div>
+  </div>
+</aside>
+<div class="modal" id="authModal"><div class="auth-box">
+  <button class="close" id="authClose">×</button>
+  <div class="auth-icon">🔐</div>
+  <h2>Administración</h2>
+  <p>Inicia sesión para administrar Piñatas Carlos.</p>
+  <form id="authForm">
+    <input id="authEmail" type="email" autocomplete="username" placeholder="Correo electrónico" required>
+    <input id="authPassword" type="password" autocomplete="current-password" placeholder="Contraseña" required>
+    <button class="btn btn-dark full" type="submit">Entrar</button>
+    <small id="authError"></small>
+  </form>
+</div></div>
+<div class="toast" id="toast"></div>
+
+<script src="data/config.js"></script>
+<script src="data/firebase-config.js"></script>
+<script src="data/catalogo.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

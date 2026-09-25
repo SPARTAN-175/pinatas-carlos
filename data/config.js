@@ -1,0 +1,8 @@
+window.PINATAS_CONFIG = {
+  "businessName": "Piñatas Carlos",
+  "tagline": "Una piñata para ti",
+  "location": "Ostuacán, Chiapas",
+  "whatsapp": "529321282222",
+  "facebook": "@Piñatas Carlos Oficial",
+  "currency": "MXN"
+};
