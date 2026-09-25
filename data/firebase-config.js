@@ -1,14 +1,15 @@
-// Pega aquí la configuración WEB de tu proyecto Firebase existente.
-// Firebase Console > Project settings > Your apps > Web app.
+// Configuración WEB de Firebase - Proyecto CAHESA Control de Pagos
+// Este archivo usa el mismo proyecto Firebase, pero Piñatas Carlos trabaja
+// exclusivamente con sus propias colecciones y carpetas de Storage.
 window.PINATAS_FIREBASE = {
-  apiKey: "",
-  authDomain: "",
-  projectId: "",
-  storageBucket: "",
-  messagingSenderId: "",
-  appId: ""
+  apiKey: "AIzaSyA0CoYL9Vx5i-9MbZbMkMsymFLAsU4HRck",
+  authDomain: "cahesa-control-de-pagos.firebaseapp.com",
+  projectId: "cahesa-control-de-pagos",
+  storageBucket: "cahesa-control-de-pagos.firebasestorage.app",
+  messagingSenderId: "472837159786",
+  appId: "1:472837159786:web:2245213218fe760b188313"
 };
 
-// IMPORTANTE: este UID también debe aparecer en las reglas de Firebase.
-// No es una contraseña ni una llave privada.
-window.PINATAS_ADMIN_UID = "ADMIN_UID_AQUI";
+// FALTA ÚNICAMENTE el UID de la cuenta administradora de Piñatas Carlos.
+// Se coloca después de crear/seleccionar esa cuenta en Firebase Authentication.
+window.PINATAS_ADMIN_UID = "JNxuv44ZLgTLWEHJ0NL01avgcdy1";

@@ -69,7 +69,7 @@ service firebase.storage {
 
     function isAdmin() {
       return request.auth != null
-        && request.auth.uid == 'ADMIN_UID_AQUI';
+        && request.auth.uid == 'JNxuv44ZLgTLWEHJ0NL01avgcdy1';
     }
   }
 }
