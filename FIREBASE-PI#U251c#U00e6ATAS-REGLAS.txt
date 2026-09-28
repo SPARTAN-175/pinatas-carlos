@@ -1,0 +1,7 @@
+IMPORTANTE: NO reemplaces tus reglas actuales.
+
+1) En firestore.rules, conserva TODO lo que ya tienes de Control de Pagos.
+2) Dentro de rules_version / service cloud.firestore / match /databases/{database}/documents agrega los bloques de firebase-schema.rules.
+3) Sustituye JNxuv44ZLgTLWEHJ0NL01avgcdy1 por el UID real del administrador.
+4) En storage.rules, conserva TODO lo actual y agrega los bloques de storage-additions.rules dentro de match /b/{bucket}/o.
+5) Sustituye JNxuv44ZLgTLWEHJ0NL01avgcdy1 por el mismo UID.
