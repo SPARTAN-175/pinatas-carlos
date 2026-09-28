@@ -51,6 +51,7 @@ const App = (() => {
       await loadSettings();
       await loadProducts();
       if(state.admin) await syncAllRatings();
+      else await hydratePublicRatings();
       renderAll();
       if (location.hash.includes("producto=")) handleHash();
     });
@@ -102,6 +103,32 @@ const App = (() => {
       state.products=Array.isArray(window.PINATAS_CATALOGO)?window.PINATAS_CATALOGO:[];
       if(firebaseReady) toast("No se pudo leer Firebase; mostrando catálogo inicial");
     }
+  }
+  async function hydratePublicRatings(){
+    if(!firebaseReady || state.admin || !state.products.length) return;
+    const cacheKey="pc_rating_cache_v1";
+    let cache={};
+    try{cache=JSON.parse(localStorage.getItem(cacheKey)||"{}")}catch(_){}
+    const now=Date.now();
+    await Promise.all(state.products.filter(p=>p.status!=="hidden"&&p.status!=="draft").map(async p=>{
+      const cached=cache[p.id];
+      if(cached && now-cached.ts<120000){
+        p.ratingAverage=Number(cached.average)||0;
+        p.ratingCount=Number(cached.count)||0;
+        return;
+      }
+      try{
+        const rs=await getDocs(collection(fb.db,"pinatas",p.id,"ratings"));
+        const vals=rs.docs.map(d=>Number(d.data().value)||0).filter(v=>v>=1&&v<=5);
+        const average=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
+        p.ratingAverage=average;
+        p.ratingCount=vals.length;
+        cache[p.id]={average,count:vals.length,ts:now};
+      }catch(e){
+        console.warn("No se pudieron cargar las valoraciones de",p.id,e);
+      }
+    }));
+    try{localStorage.setItem(cacheKey,JSON.stringify(cache));}catch(_){}
   }
   function renderAll(){renderCategories();renderProducts();renderFeatured();renderPromotionBanner();renderAdmin();updateAdminButton();}
   function updateAdminButton(){const b=$(".head-link[onclick*=openAdmin]"); if(b) b.innerHTML=state.admin?"⚙ <span>Panel</span>":"⚙ <span>Administrar</span>";}
@@ -173,8 +200,16 @@ const App = (() => {
       const rs=await getDocs(collection(fb.db,"pinatas",id,"ratings"));
       const vals=rs.docs.map(d=>Number(d.data().value)||0).filter(v=>v>=1&&v<=5);
       const average=vals.length?vals.reduce((a,b)=>a+b,0)/vals.length:0;
-      await updateDoc(doc(fb.db,"pinatas",id),{ratingAverage:average,ratingCount:vals.length,updatedAt:serverTimestamp()});
-      const p=state.products.find(x=>x.id===id);if(p){p.ratingAverage=average;p.ratingCount=vals.length;}
+      const p=state.products.find(x=>x.id===id);
+      if(p){p.ratingAverage=average;p.ratingCount=vals.length;}
+      try{
+        const cache=JSON.parse(localStorage.getItem("pc_rating_cache_v1")||"{}");
+        cache[id]={average,count:vals.length,ts:Date.now()};
+        localStorage.setItem("pc_rating_cache_v1",JSON.stringify(cache));
+      }catch(_){}
+      // El voto público se guarda únicamente en la subcolección ratings.
+      // No intentamos modificar el documento principal de la piñata porque las reglas
+      // de Firestore reservan ese permiso para el administrador.
       toast("¡Gracias por valorar! ⭐");renderProducts();renderFeatured();await openProduct(id);}
     catch(e){console.error(e);toast("No se pudo guardar tu valoración");}
   }
