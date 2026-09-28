@@ -17,7 +17,7 @@ const App = (() => {
   const state = {
     products: [], config: {}, category:"Todas", search:"", adminSearch:"", sort:"featured",
     favorites: JSON.parse(localStorage.getItem("pc_favorites") || "[]"),
-    adminTab:"products", user:null, admin:false, editingProduct:null, settings:null
+    adminTab:"products", user:null, admin:false, editingProduct:null, editingPromotion:null, settings:null
   };
   const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
   const money = n => Number(n||0).toLocaleString("es-MX");
@@ -157,6 +157,16 @@ const App = (() => {
     const active=p.offerEnabled && offer>0 && (!p.offerStart || Date.now()>=new Date(p.offerStart).getTime()) && (!p.offerEnd || Date.now()<=new Date(p.offerEnd).getTime());
     return {base,offer:Math.max(0,offer),discount:discount>0?Math.min(100,discount):0,active};
   }
+  function activePromotions(){ return (state.settings?.promotions||[]).filter(x=>x.active); }
+  function normalizePromotionLink(link){
+    const raw=String(link||"").trim();
+    if(!raw || raw.toLowerCase()==="catalogo" || raw.toLowerCase()==="catalog" || raw.toLowerCase()==="catalogo.html" || raw==="/catalogo") return "#catalogo";
+    return raw;
+  }
+  function promotionBadgeHtml(){
+    const promo=activePromotions()[0];
+    return promo?`<span class="promo-card-badge">🔥 ${esc(promo.badge||"PROMO")}</span>`:"";
+  }
   function priceHtml(p){
     const o=offerData(p);
     if(!o.active) return `<div class="product-price">$${money(o.base)} <small>MXN</small></div>`;
@@ -165,7 +175,7 @@ const App = (() => {
   }
   function card(p){
     const fav=state.favorites.includes(p.id), count=Number(p.ratingCount)||0, avg=count>0?Number(p.ratingAverage??p.rating??0):0;
-    return `<article class="product-card"><div class="product-image">${p.featured?`<span class="badge">DESTACADA</span>`:""}${offerData(p).active?`<span class="offer-badge">OFERTA</span>`:""}<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"><button class="heart ${fav?"active":""}" onclick="App.toggleFavorite(event,'${p.id}')">${fav?"♥":"♡"}</button></div><div class="product-info"><p class="product-title">${esc(p.name)}</p><div class="rating">${stars(avg)} <span class="rating-value">${count?Number(avg).toFixed(1):"0.0"}</span> <span class="rating-count">(${count})</span></div><div class="product-desc">${esc(p.description)}</div>${priceHtml(p)}<div class="product-actions"><button onclick="App.openProduct('${p.id}')">Ver detalles</button><button class="dark" onclick="App.order('${p.id}')">Pedir</button></div></div></article>`;
+    return `<article class="product-card"><div class="product-image">${p.featured?`<span class="badge">DESTACADA</span>`:""}${offerData(p).active?`<span class="offer-badge">OFERTA</span>`:""}${promotionBadgeHtml()}<img src="${esc(p.image)}" alt="${esc(p.name)}" loading="lazy"><button class="heart ${fav?"active":""}" onclick="App.toggleFavorite(event,'${p.id}')">${fav?"♥":"♡"}</button></div><div class="product-info"><p class="product-title">${esc(p.name)}</p><div class="rating">${stars(avg)} <span class="rating-value">${count?Number(avg).toFixed(1):"0.0"}</span> <span class="rating-count">(${count})</span></div><div class="product-desc">${esc(p.description)}</div>${priceHtml(p)}<div class="product-actions"><button onclick="App.openProduct('${p.id}')">Ver detalles</button><button class="dark" onclick="App.order('${p.id}')">Pedir</button></div></div></article>`;
   }
   function detailPriceHtml(p){
     const o=offerData(p);
@@ -272,16 +282,52 @@ const App = (() => {
 
   function promotionsView(){
     const promotions=Array.isArray(state.settings?.promotions)?state.settings.promotions:[];
-    return `<div class="admin-stat"><b>🏷️ Promociones generales</b><span>Estas promociones pueden aparecer en la página principal. Puedes crear, activar o eliminar avisos sin tocar cada piñata.</span></div><form id="promotionForm" class="form-grid" style="margin-top:10px"><input id="promoTitle" placeholder="Título de la promoción *" required><input id="promoText" placeholder="Texto corto / beneficio" required><input id="promoBadge" placeholder="Etiqueta (ej. 15% OFF)" value="OFERTA"><input id="promoLink" placeholder="Enlace o #catalogo" value="#catalogo"><label><input id="promoActive" type="checkbox" checked> Mostrar en la página</label><button class="btn btn-primary full" type="submit">＋ Crear promoción</button></form><div class="promotion-list" style="margin-top:14px">${promotions.map((x,i)=>`<div class="promotion-row"><div><b>${esc(x.title)}</b><small>${esc(x.text)} · ${x.active?"Activa":"Oculta"}</small></div><div><button class="admin-actions-btn" onclick="App.togglePromotion(${i})">${x.active?"🙈 Ocultar":"👁️ Mostrar"}</button><button class="admin-actions-btn" onclick="App.deletePromotion(${i})">🗑️</button></div></div>`).join("")||`<div class="empty">Todavía no hay promociones generales.</div>`}</div>`;
+    const editing=Number.isInteger(state.editingPromotion)?state.editingPromotion:null;
+    const current=editing!==null?promotions[editing]:null;
+    return `<div class="admin-stat"><b>🏷️ Promociones generales</b><span>Estas promociones aparecen en la página principal y pueden llevar al catálogo. Aquí puedes crearlas, editarlas, ocultarlas o eliminarlas.</span></div>
+      <form id="promotionForm" class="form-grid" style="margin-top:10px">
+        <input id="promoTitle" placeholder="Título de la promoción *" value="${esc(current?.title||"")}" required>
+        <input id="promoText" placeholder="Texto corto / beneficio" value="${esc(current?.text||"")}" required>
+        <input id="promoBadge" placeholder="Etiqueta (ej. 10% OFF)" value="${esc(current?.badge||"OFERTA")}">
+        <select id="promoLink">
+          <option value="#catalogo" ${normalizePromotionLink(current?.link)==="#catalogo"?"selected":""}>Ir al catálogo</option>
+          <option value="#destacadas" ${current?.link==="#destacadas"?"selected":""}>Ir a destacadas</option>
+        </select>
+        <label><input id="promoActive" type="checkbox" ${current?.active!==false?"checked":""}> Mostrar en la página</label>
+        <div class="full" style="display:flex;gap:7px;flex-wrap:wrap"><button class="btn btn-primary" type="submit">${editing!==null?"💾 Guardar cambios":"＋ Crear promoción"}</button>${editing!==null?`<button class="btn btn-white" type="button" onclick="App.cancelPromotionEdit()">Cancelar</button>`:""}</div>
+      </form>
+      <div class="promotion-list" style="margin-top:14px">${promotions.map((x,i)=>`<div class="promotion-row"><div><b>${esc(x.title)}</b><small>${esc(x.text)} · ${x.active?"Activa":"Oculta"}</small></div><div class="admin-actions"><button onclick="App.editPromotion(${i})">✏️ Editar</button><button onclick="App.togglePromotion(${i})">${x.active?"🙈 Ocultar":"👁️ Mostrar"}</button><button onclick="App.deletePromotion(${i})">🗑️ Eliminar</button></div></div>`).join("")||`<div class="empty">Todavía no hay promociones generales.</div>`}</div>`;
   }
   function bindPromotions(){
-    $("#promotionForm").onsubmit=async e=>{e.preventDefault();const promotions=Array.isArray(state.settings?.promotions)?[...state.settings.promotions]:[];promotions.push({id:crypto.randomUUID(),title:$("#promoTitle").value.trim(),text:$("#promoText").value.trim(),badge:$("#promoBadge").value.trim()||"OFERTA",link:$("#promoLink").value.trim()||"#catalogo",active:$("#promoActive").checked,createdAt:Date.now()});await savePromotions(promotions);e.target.reset();$("#promoBadge").value="OFERTA";$("#promoLink").value="#catalogo";$("#promoActive").checked=true;};
+    $("#promotionForm").onsubmit=async e=>{
+      e.preventDefault();
+      const promotions=Array.isArray(state.settings?.promotions)?[...state.settings.promotions]:[];
+      const item={title:$("#promoTitle").value.trim(),text:$("#promoText").value.trim(),badge:$("#promoBadge").value.trim()||"OFERTA",link:normalizePromotionLink($("#promoLink").value),active:$("#promoActive").checked,createdAt:Date.now()};
+      if(state.editingPromotion!==null && promotions[state.editingPromotion]){
+        item.id=promotions[state.editingPromotion].id||crypto.randomUUID();
+        item.createdAt=promotions[state.editingPromotion].createdAt||Date.now();
+        promotions[state.editingPromotion]=item;
+      }else{ item.id=crypto.randomUUID(); promotions.push(item); }
+      state.editingPromotion=null;
+      await savePromotions(promotions);
+    };
   }
-  async function savePromotions(promotions){try{await setDoc(doc(fb.db,"siteSettings","public"),{promotions,updatedAt:serverTimestamp()},{merge:true});state.settings={...(state.settings||{}),promotions};renderAdmin();renderPromotionBanner();toast("Promoción actualizada ✨");}catch(e){console.error(e);toast("No se pudo guardar la promoción");}}
-  async function togglePromotion(i){const promotions=[...(state.settings?.promotions||[])];if(!promotions[i])return;promotions[i]={...promotions[i],active:!promotions[i].active};await savePromotions(promotions);}
+  async function savePromotions(promotions){try{
+    await setDoc(doc(fb.db,"siteSettings","public"),{promotions,updatedAt:serverTimestamp()},{merge:true});
+    state.settings={...(state.settings||{}),promotions};
+    state.editingPromotion=null;
+    renderAdmin();renderPromotionBanner();renderProducts();renderFeatured();
+    toast("Promoción actualizada ✨");
+  }catch(e){console.error(e);toast("No se pudo guardar la promoción");}}
+  function editPromotion(i){if(!isAdmin())return;state.editingPromotion=i;state.adminTab="promotions";renderAdmin();}
+  function cancelPromotionEdit(){state.editingPromotion=null;renderAdmin();}
+  async function togglePromotion(i){const promotions=[...(state.settings?.promotions||[])];if(!promotions[i])return;promotions[i]={...promotions[i],active:!promotions[i].active,link:normalizePromotionLink(promotions[i].link)};await savePromotions(promotions);}
   async function deletePromotion(i){const promotions=[...(state.settings?.promotions||[])];if(!promotions[i]||!confirm("¿Eliminar esta promoción?"))return;promotions.splice(i,1);await savePromotions(promotions);}
   function renderPromotionBanner(){
-    const box=$("#promotionBanner");if(!box)return;const list=(state.settings?.promotions||[]).filter(x=>x.active);box.innerHTML=list.length?list.map(x=>`<a class="promotion-banner" href="${esc(x.link||"#catalogo")}"><span class="promotion-badge">${esc(x.badge||"OFERTA")}</span><span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span><span class="promotion-arrow">→</span></a>`).join(""):"";box.style.display=list.length?"grid":"none";
+    const box=$("#promotionBanner");if(!box)return;
+    const list=activePromotions();
+    box.innerHTML=list.length?list.map(x=>`<a class="promotion-banner" href="${esc(normalizePromotionLink(x.link))}"><span class="promotion-badge">${esc(x.badge||"OFERTA")}</span><span><b>${esc(x.title)}</b><small>${esc(x.text)}</small></span><span class="promotion-arrow">→</span></a>`).join(""): "";
+    box.style.display=list.length?"grid":"none";
   }
   async function syncAllRatings(){
     if(!isAdmin()||!firebaseReady)return;
@@ -303,7 +349,7 @@ const App = (() => {
   async function uploadBrandAsset(inputId,folder,field){const file=$("#"+inputId).files[0];if(!file)return toast("Selecciona una imagen");try{const blob=await compressImage(file),r=ref(fb.storage,`pinatas/${folder}/site-${Date.now()}.webp`);await uploadBytes(r,blob,{contentType:"image/webp",cacheControl:"public,max-age=31536000,immutable"});const url=await getDownloadURL(r);await setDoc(doc(fb.db,"siteSettings","public"),{[field]:url,updatedAt:serverTimestamp()},{merge:true});await loadSettings();toast("Imagen actualizada ✨");}catch(e){console.error(e);toast("No se pudo subir la imagen");}}
 
   function handleHash(){const m=location.hash.match(/producto=([^&]+)/);if(m){const id=decodeURIComponent(m[1]);if(state.products.some(p=>p.id===id))openProduct(id);}}
-  return {init,openProduct,selectImage,toggleFavorite,rate,addComment,order,share,shareShop,clearFilters,openAdmin,closeAdmin,renderAdmin,newProduct,editProduct,duplicateProduct,toggleHidden,deleteProduct,togglePromotion,deletePromotion};
+  return {init,openProduct,selectImage,toggleFavorite,rate,addComment,order,share,shareShop,clearFilters,openAdmin,closeAdmin,renderAdmin,newProduct,editProduct,duplicateProduct,toggleHidden,deleteProduct,togglePromotion,deletePromotion,editPromotion,cancelPromotionEdit};
 })();
 window.App=App;
 document.addEventListener("DOMContentLoaded",()=>App.init());
