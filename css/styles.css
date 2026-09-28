@@ -18,3 +18,29 @@
 @media(max-width:700px){.topline{font-size:10px}.header-inner{padding:9px 12px;flex-wrap:wrap;gap:8px}.brand{width:145px}.logo{width:145px;height:43px}.searchbar{order:3;flex-basis:100%;height:42px}.header-actions{margin-left:auto}.head-link{padding:8px}.nav-inner{padding:8px 12px;gap:18px}.location{display:none}.hero{padding:0 10px;margin-top:10px}.hero-card{min-height:270px;padding:27px 24px;background-position:65%;}.hero h1{font-size:39px}.hero p{font-size:14px}.hero-art{display:none}.container{padding:23px 10px}.market-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.product-info{padding:10px}.product-title{font-size:13px}.product-desc{font-size:11px}.product-price{font-size:18px}.product-actions{grid-template-columns:1fr}.trust-grid{grid-template-columns:1fr 1fr;padding:15px 10px}.trust-grid>div{padding:9px;border:0}.step-grid{grid-template-columns:1fr 1fr}.footer-inner{grid-template-columns:1fr 1fr}.detail{grid-template-columns:1fr}.detail-main{height:360px}.detail-content{padding:22px}.detail-content h2{font-size:30px}}
 @media(max-width:450px){.section-head{align-items:start;flex-direction:column}.filter{width:100%}.footer-inner{grid-template-columns:1fr}.hero h1{font-size:35px}.hero-card{min-height:310px}}
 .auth-box{width:min(410px,100%);background:#fff;border-radius:16px;padding:34px;position:relative;box-shadow:0 20px 60px #0005}.auth-box h2{font:800 30px Georgia,serif;margin:10px 0 5px}.auth-box p{color:#777;font-size:13px;margin-bottom:20px}.auth-icon{font-size:35px}.auth-box form{display:grid;gap:9px}.auth-box input{border:1px solid var(--line);border-radius:9px;padding:12px;outline:none}.auth-box input:focus{border-color:#222}.auth-box #authError{color:#c62828;min-height:16px}.full{width:100%}.rating-picker{display:flex;gap:2px;margin-bottom:10px}.rating-picker button{border:0;background:none;font-size:24px;color:#f0ae00;padding:0 2px}.admin-stat span{line-height:1.4}
+
+/* Valoraciones, ofertas y promociones */
+.stars{display:inline-flex;gap:1px;vertical-align:middle;line-height:1}
+.star{position:relative;display:inline-block;color:#d9d9d9;font-size:14px;letter-spacing:0}
+.star::after{content:"★";position:absolute;inset:0;width:var(--fill);overflow:hidden;color:#f0a900;white-space:nowrap}
+.rating-value{color:#555;font-size:11px;letter-spacing:0;margin-left:3px}
+.rating-count{color:#888;font-size:11px;letter-spacing:0}
+.offer-badge{position:absolute;right:9px;top:54px;background:#d92323;color:#fff;border-radius:20px;padding:6px 8px;font-size:9px;font-weight:900;z-index:2}
+.product-price.offer{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.old-price{text-decoration:line-through;color:#999;font-size:13px;font-weight:700}
+.new-price{color:#d92323;font-weight:950}
+.discount-badge{display:inline-block;background:#d92323;color:#fff;border-radius:999px;padding:3px 6px;font-size:10px;font-weight:900}
+.detail-price.offer{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.rating-picker button{color:#cfcfcf}
+.rating-picker button.selected{color:#f0ae00}
+.offer-editor{border:1px solid var(--line);border-radius:10px;padding:11px;background:#fffdf1}
+.offer-editor>b{display:block;margin-bottom:8px}
+.offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.offer-grid label{font-size:10px;color:#666}
+.offer-grid input{margin-top:4px}
+.offer-editor small{display:block;color:#777;margin-top:8px;line-height:1.4}
+.promotion-wrap{display:grid;gap:8px;padding:8px 14px 0;max-width:1280px;margin:auto}
+.promotion-banner{display:flex;align-items:center;gap:10px;background:#fff7bf;border:1px solid #f0dc68;border-radius:12px;padding:10px 12px;color:#222;text-decoration:none;box-shadow:0 2px 8px #0000000d}
+.promotion-banner b{display:block;font-size:13px}.promotion-banner small{display:block;color:#666;margin-top:2px}.promotion-badge{background:#222;color:#fff;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:900;white-space:nowrap}.promotion-arrow{margin-left:auto;font-size:20px;font-weight:900}
+.promotion-list{display:grid;gap:8px}.promotion-row{display:flex;justify-content:space-between;align-items:center;gap:8px;border:1px solid var(--line);border-radius:9px;padding:10px}.promotion-row b,.promotion-row small{display:block}.promotion-row small{color:#777;margin-top:3px}.admin-actions-btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:6px 8px;font-size:10px;font-weight:800}
+@media(max-width:700px){.offer-grid{grid-template-columns:1fr}.promotion-banner{align-items:flex-start}.promotion-badge{margin-top:2px}}
