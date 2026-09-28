@@ -228,5 +228,413 @@ window.PINATAS_CATALOGO = [
       "personalizada"
     ],
     "comments": []
+  },
+  {
+    "id": "pinata-elote",
+    "name": "Piñata Elote",
+    "category": "Tradicionales",
+    "price": 450,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Divertida y original piñata con forma de elote, elaborada artesanalmente en tonos amarillos y verdes. Una opción alegre y diferente para fiestas infantiles, celebraciones mexicanas y eventos especiales. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-elote.jpg",
+    "gallery": [
+      "assets/products/pinata-elote.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "tradicionales",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-goku",
+    "name": "Piñata Goku",
+    "category": "Personajes",
+    "price": 550,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Piñata artesanal inspirada en Goku, con su característico uniforme naranja, cabello negro y detalles cuidadosamente elaborados. Ideal para cumpleaños y celebraciones con temática de anime y Dragon Ball. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-goku.jpg",
+    "gallery": [
+      "assets/products/pinata-goku.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personajes",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-sirenita-rosita",
+    "name": "Piñata Sirenita Rosita",
+    "category": "Personajes",
+    "price": 600,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Hermosa piñata de sirenita personalizada con el nombre Rosita, combinando tonos rosa, verde, blanco y dorado. Un diseño especial para hacer único cualquier cumpleaños o celebración. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-sirenita-rosita.jpg",
+    "gallery": [
+      "assets/products/pinata-sirenita-rosita.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personajes",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-dragon-fantastico",
+    "name": "Piñata Dragón Fantástico",
+    "category": "Personajes",
+    "price": 600,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Impresionante piñata artesanal con forma de dragón y diseño tridimensional, con detalles en rojo, rosa y azul. Una pieza protagonista para fiestas temáticas y celebraciones especiales. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-dragon-fantastico.jpg",
+    "gallery": [
+      "assets/products/pinata-dragon-fantastico.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personajes",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-minecraft-aventura",
+    "name": "Piñata Minecraft Aventura",
+    "category": "Videojuegos",
+    "price": 650,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Espectacular piñata temática de Minecraft que reúne personajes, bloques, herramientas y elementos pixelados del universo del juego. Ideal para convertir una fiesta infantil en toda una aventura. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-minecraft-aventura.jpg",
+    "gallery": [
+      "assets/products/pinata-minecraft-aventura.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "videojuegos",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-minecraft-steve",
+    "name": "Piñata Steve de Minecraft",
+    "category": "Videojuegos",
+    "price": 500,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Piñata artesanal inspirada en Steve de Minecraft, con su característico estilo pixelado, vestimenta y espada. Perfecta para cumpleaños y celebraciones con temática gamer. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-minecraft-steve.jpg",
+    "gallery": [
+      "assets/products/pinata-minecraft-steve.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "videojuegos",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-pollito-azul",
+    "name": "Piñata Pollito Azul",
+    "category": "Animales",
+    "price": 450,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Tierna y colorida piñata con forma de pollito azul, elaborada completamente a mano y decorada con detalles que resaltan sus ojos, pico, alas y patitas. Un diseño alegre y original para fiestas infantiles. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-pollito-azul.jpg",
+    "gallery": [
+      "assets/products/pinata-pollito-azul.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "animales",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-angry-birds",
+    "name": "Piñata Angry Birds",
+    "category": "Personajes",
+    "price": 500,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Divertida piñata inspirada en los populares personajes de Angry Birds, presentada en un diseño colorido y llamativo. Una excelente opción para fiestas infantiles llenas de diversión. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-angry-birds.jpg",
+    "gallery": [
+      "assets/products/pinata-angry-birds.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personajes",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-blanca-nieves",
+    "name": "Piñata Blanca Nieves",
+    "category": "Princesas",
+    "price": 550,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Hermosa piñata artesanal inspirada en Blanca Nieves, con su característico vestido en tonos amarillo, azul y rojo y detalles cuidadosamente elaborados. Ideal para fiestas con temática de princesas. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-blanca-nieves.jpg",
+    "gallery": [
+      "assets/products/pinata-blanca-nieves.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "princesas",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-manzana-ximena",
+    "name": "Piñata Manzana Personalizada Ximena",
+    "category": "Personalizadas",
+    "price": 450,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Original piñata en forma de manzana, personalizada con el nombre Ximena. Su diseño colorido y alegre puede adaptarse con el nombre y detalles que necesites para tu celebración. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-manzana-ximena.jpg",
+    "gallery": [
+      "assets/products/pinata-manzana-ximena.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personalizadas",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-estrella-floral",
+    "name": "Piñata Estrella Floral",
+    "category": "Tradicionales",
+    "price": 350,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Hermosa estrella artesanal decorada con flores en tonos amarillo y rojo, detalles brillantes y coloridas tiras colgantes. Un diseño alegre que luce espectacular en cualquier celebración. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-estrella-floral.jpg",
+    "gallery": [
+      "assets/products/pinata-estrella-floral.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "tradicionales",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-estrella-tradicional",
+    "name": "Piñata Estrella Tradicional Roja",
+    "category": "Tradicionales",
+    "price": 300,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Colorida estrella de siete picos, elaborada artesanalmente con papel de colores y detalles brillantes. Un clásico de las celebraciones mexicanas para cumpleaños, posadas y todo tipo de fiestas. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-estrella-tradicional.jpg",
+    "gallery": [
+      "assets/products/pinata-estrella-tradicional.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "tradicionales",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-unicornio-magico",
+    "name": "Piñata Unicornio Mágico",
+    "category": "Personajes",
+    "price": 500,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Encantadora piñata de unicornio con diseño tierno y lleno de color. Destacan su melena multicolor, cuerno dorado, ojos expresivos y detalles brillantes. Perfecta para fiestas infantiles. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-unicornio-magico.jpg",
+    "gallery": [
+      "assets/products/pinata-unicornio-magico.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personajes",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-among-us-equipo",
+    "name": "Piñata Among Us - Equipo",
+    "category": "Videojuegos",
+    "price": 450,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Original piñata temática de Among Us con varios personajes en diferentes colores y un diseño central inspirado en el videojuego. Ideal para fiestas infantiles y celebraciones con temática gamer. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-among-us-equipo.jpg",
+    "gallery": [
+      "assets/products/pinata-among-us-equipo.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "videojuegos",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-among-us-rojo",
+    "name": "Piñata Among Us Rojo",
+    "category": "Videojuegos",
+    "price": 350,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Piñata artesanal con la forma del popular personaje rojo de Among Us, con su característico visor y detalles cuidadosamente elaborados. Una opción divertida para los pequeños amantes de los videojuegos. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-among-us-rojo.jpg",
+    "gallery": [
+      "assets/products/pinata-among-us-rojo.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "videojuegos",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-unicornio-numero-2",
+    "name": "Piñata Número 2 Unicornio",
+    "category": "Números",
+    "price": 500,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Original piñata en forma de número 2 con temática de unicornio, decorada con flores, colores pastel y detalles brillantes. Ideal para celebrar un segundo cumpleaños de una manera muy especial. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-unicornio-numero-2.jpg",
+    "gallery": [
+      "assets/products/pinata-unicornio-numero-2.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "números",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
+  },
+  {
+    "id": "pinata-minnie",
+    "name": "Piñata Minnie Mouse",
+    "category": "Personajes",
+    "price": 400,
+    "priceLabel": "Precio desde",
+    "size": "A medida",
+    "description": "Divertida piñata inspirada en Minnie Mouse, elaborada en los clásicos colores rojo, negro y blanco. Su característico moño y sus lunares hacen que sea una excelente opción para una fiesta infantil. Todas nuestras piñatas se elaboran sobre pedido; si tienes otro diseño, envíanos una imagen de referencia para cotizarlo.",
+    "image": "assets/products/pinata-minnie.jpg",
+    "gallery": [
+      "assets/products/pinata-minnie.jpg"
+    ],
+    "rating": 5,
+    "ratingCount": 0,
+    "featured": false,
+    "status": "published",
+    "tags": [
+      "personajes",
+      "piñata",
+      "personalizada",
+      "sobre pedido"
+    ],
+    "comments": []
   }
 ];
